@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import BrowserExtension from "./components/Authentication/BrowserExtension";
+import SimpleAccount from "./components/SmartWallets/simpleAccount";
 
 function App() {
+  const [signerAddress, setSignerAddress] = useState(null);
+
+  console.log("Signer in App:", signerAddress);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserExtension setSignerAddress={setSignerAddress} />
+      {signerAddress && <SimpleAccount signerAddress={signerAddress} />}
     </div>
   );
 }
